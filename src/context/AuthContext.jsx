@@ -6,12 +6,14 @@ export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
+    const API_URL = import.meta.env.VITE_API_URL || 'https://event-backend-gamma.vercel.app';
+
     useEffect(() => {
         const loadUser = async () => {
             const token = localStorage.getItem('token');
             if (token) {
                 try {
-                    const res = await fetch('https://event-backend-gamma.vercel.app/api/auth/me', {
+                    const res = await fetch(`${API_URL}/api/auth/me`, {
                         headers: { 'Authorization': `Bearer ${token}` }
                     });
                     if (res.ok) {
@@ -32,7 +34,7 @@ export const AuthProvider = ({ children }) => {
     }, []);
 
     const login = async (email, password) => {
-        const res = await fetch('https://event-backend-gamma.vercel.app/api/auth/login', {
+        const res = await fetch(`${API_URL}/api/auth/login`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email, password })
@@ -47,7 +49,7 @@ export const AuthProvider = ({ children }) => {
     };
 
     const register = async (name, email, password, grade) => {
-        const res = await fetch('https://event-backend-gamma.vercel.app/api/auth/register', {
+        const res = await fetch(`${API_URL}/api/auth/register`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ name, email, password, grade: Number(grade) })
@@ -59,7 +61,7 @@ export const AuthProvider = ({ children }) => {
         localStorage.setItem('token', data.token);
 
         // Auto-fetch user details after register
-        const userRes = await fetch('https://event-backend-gamma.vercel.app/api/auth/me', {
+        const userRes = await fetch(`${API_URL}/api/auth/me`, {
             headers: { 'Authorization': `Bearer ${data.token}` }
         });
         if (userRes.ok) {

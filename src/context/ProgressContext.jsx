@@ -11,9 +11,10 @@ export const ProgressProvider = ({ children }) => {
     const fetchRecommended = async () => {
         if (!user) return;
         setLoadingModules(true);
+        const API_URL = import.meta.env.VITE_API_URL || 'https://event-backend-gamma.vercel.app';
         try {
             const token = localStorage.getItem('token');
-            const res = await fetch('https://event-backend-gamma.vercel.app/api/modules/recommended', {
+            const res = await fetch(`${API_URL}/api/modules/recommended`, {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             if (res.ok) {

@@ -8,10 +8,12 @@ const ModuleView = () => {
     const [module, setModule] = useState(null);
     const [error, setError] = useState('');
 
+    const API_URL = import.meta.env.VITE_API_URL || 'https://event-backend-gamma.vercel.app';
+
     useEffect(() => {
         const fetchModule = async () => {
             try {
-                const res = await fetch(`https://event-backend-gamma.vercel.app/api/modules/${id}`);
+                const res = await fetch(`${API_URL}/api/modules/${id}`);
                 if (!res.ok) throw new Error('Failed to load module');
                 setModule(await res.json());
             } catch (err) {

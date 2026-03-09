@@ -16,11 +16,13 @@ const QuizView = () => {
     const [results, setResults] = useState(null);
     const [submitting, setSubmitting] = useState(false);
 
+    const API_URL = import.meta.env.VITE_API_URL || 'https://event-backend-gamma.vercel.app';
+
     useEffect(() => {
         const fetchQuiz = async () => {
             try {
                 const token = localStorage.getItem('token');
-                const res = await fetch(`https://event-backend-gamma.vercel.app/api/quizzes/module/${moduleId}`, {
+                const res = await fetch(`${API_URL}/api/quizzes/module/${moduleId}`, {
                     headers: { 'Authorization': `Bearer ${token}` }
                 });
                 if (!res.ok) throw new Error('Failed to load quiz');
@@ -69,7 +71,7 @@ const QuizView = () => {
 
         try {
             const token = localStorage.getItem('token');
-            const res = await fetch(`https://event-backend-gamma.vercel.app/api/quizzes/submit`, {
+            const res = await fetch(`${API_URL}/api/quizzes/submit`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
