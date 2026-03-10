@@ -16,7 +16,7 @@ const QuizView = () => {
     const [results, setResults] = useState(null);
     const [submitting, setSubmitting] = useState(false);
 
-    const API_URL = import.meta.env.VITE_API_URL || 'https://event-backend-gamma.vercel.app';
+    const API_URL = import.meta.env.VITE_API_URL || 'https://event-backend-vert-nine.vercel.app';
 
     useEffect(() => {
         const fetchQuiz = async () => {

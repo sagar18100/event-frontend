@@ -6,7 +6,7 @@ export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    const API_URL = import.meta.env.VITE_API_URL || 'https://event-backend-gamma.vercel.app';
+    const API_URL = import.meta.env.VITE_API_URL || 'https://event-backend-vert-nine.vercel.app';
 
     useEffect(() => {
         const loadUser = async () => {

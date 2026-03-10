@@ -8,7 +8,7 @@ const ModuleView = () => {
     const [module, setModule] = useState(null);
     const [error, setError] = useState('');
 
-    const API_URL = import.meta.env.VITE_API_URL || 'https://event-backend-gamma.vercel.app';
+    const API_URL = import.meta.env.VITE_API_URL || 'https://event-backend-vert-nine.vercel.app';
 
     useEffect(() => {
         const fetchModule = async () => {
